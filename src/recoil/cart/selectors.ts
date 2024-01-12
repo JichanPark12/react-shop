@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { cartListState } from './atoms';
+import { Cart } from '../../interface/cart/cart';
 
 export const cartTotalQuantityState = selector({
   key: 'cartTotalQuantity',
@@ -10,10 +11,18 @@ export const cartTotalQuantityState = selector({
   },
 });
 
-export const filterCartList = selector({
-  key: 'filterCartList',
+export const filterIsCheckedCartList = selector({
+  key: 'filterIsCheckedCartList',
   get: ({ get }) => {
     const list = get(cartListState);
     return [...list.values()].filter((li) => li.isChecked);
+  },
+});
+
+export const filterIsNotCheckedCartList = selector({
+  key: 'filterIsNotCheckedCartList',
+  get: ({ get }) => {
+    const list = get(cartListState);
+    return [...list.values()].filter((li) => !li.isChecked);
   },
 });

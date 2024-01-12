@@ -5,3 +5,4 @@ const CategoryProductsLoading = () => {
 };
 
 export default CategoryProductsLoading;
+

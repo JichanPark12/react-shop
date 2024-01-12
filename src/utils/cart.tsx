@@ -56,3 +56,4 @@ export const removeCart = (cartList: Map<string, Cart>, productId: string) => {
   newCartList.delete(productId);
   return newCartList;
 };
+

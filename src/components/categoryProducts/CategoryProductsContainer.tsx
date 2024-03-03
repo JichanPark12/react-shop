@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import Position from '../utils/Position';
 import CategoryProductTitle from './CategoryProductTitle';
 import Skeleton from '../skeleton/skeleton';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const CategoryProductsContainer = () => {
   const { id: category } = useParams();
@@ -20,9 +21,11 @@ const CategoryProductsContainer = () => {
       <article className="mb-28">
         <Position position={['Home', category]}></Position>
         <CategoryProductTitle category={category}></CategoryProductTitle>
-        <Suspense fallback={<Skeleton />}>
-          <CategoryProducts category={category}></CategoryProducts>
-        </Suspense>
+        <ErrorBoundary fallback={<NotFound></NotFound>}>
+          <Suspense fallback={<Skeleton />}>
+            <CategoryProducts category={category}></CategoryProducts>
+          </Suspense>
+        </ErrorBoundary>
       </article>
     </div>
   );

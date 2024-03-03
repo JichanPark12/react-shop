@@ -33,7 +33,6 @@ const CartProductCard = ({ cart }: Props) => {
     );
   };
 
-  if (!product) return;
   return (
     <div className="flex mb-5">
       <div className="mr-5 rounded-sm">

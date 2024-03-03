@@ -1,6 +1,5 @@
 import { selector } from 'recoil';
 import { cartListState } from './atoms';
-import { Cart } from '../../interface/cart/cart';
 
 export const cartTotalQuantityState = selector({
   key: 'cartTotalQuantity',

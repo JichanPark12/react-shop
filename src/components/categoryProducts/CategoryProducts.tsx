@@ -1,15 +1,23 @@
-import { useParams } from 'react-router-dom';
 import useGetProductByCategory from '../../queries/product/productByCategoryQueries';
 import { Product } from '../../interface/product/productInterface';
 import CategoryProductCard from './CategoryProductCard';
 
-const CategoryProducts = () => {
-  const { id: category } = useParams();
+interface Props {
+  category: string;
+  limit?: number;
+}
 
+const CategoryProducts = ({ category, limit = Infinity }: Props) => {
   const { data: products } = useGetProductByCategory(category);
+
+  const limitProducts =
+    limit !== Infinity
+      ? products.filter((_: Product, idx: number) => idx < limit)
+      : products;
+
   return (
     <div className="grid gap-6 grid-cols-4">
-      {products.map((product: Product, idx: number) => {
+      {limitProducts.map((product: Product, idx: number) => {
         return <CategoryProductCard key={idx} product={product}></CategoryProductCard>;
       })}
     </div>

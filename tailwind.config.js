@@ -16,6 +16,7 @@ export default {
       colors: {
         obsidian: '#191d24',
         darkBlueColor: '#2a303c',
+        footerDark: '#242933',
       },
     },
   },

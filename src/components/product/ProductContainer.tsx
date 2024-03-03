@@ -1,18 +1,17 @@
 import { Suspense } from 'react';
-import ProductCard from './ProductCard';
-import CategoryProductsLoading from '../categoryProducts/CategoryProductsLoading';
 import { useParams } from 'react-router-dom';
-import NotFound from '../error/NotFound';
+import ProductContent from './ProductContent';
+import Skeleton from '../skeleton/skeleton';
 
 const ProductContainer = () => {
-  const { id: productId } = useParams();
-  if (productId === undefined) {
-    return <NotFound></NotFound>;
-  }
+  const { id: productId = '1' } = useParams();
+
   return (
-    <Suspense fallback={<CategoryProductsLoading />}>
-      <ProductCard productId={productId}></ProductCard>
-    </Suspense>
+    <div className="max-w-screen-xl2 m-auto pr-3 pl-3">
+      <Suspense fallback={<Skeleton />}>
+        <ProductContent productId={productId}></ProductContent>
+      </Suspense>
+    </div>
   );
 };
 export default ProductContainer;

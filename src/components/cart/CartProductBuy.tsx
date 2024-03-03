@@ -10,7 +10,7 @@ const CartProductBuy = () => {
   const checkFilterCartList = useRecoilValue(filterIsCheckedCartList);
   const ids: string[] = checkFilterCartList.map((cart) => cart.id);
   const productList = useGetProductByIds(ids);
-  console.log(checkFilterCartList);
+
   const totalPrice = productList.reduce(
     (acc, cur, idx) => (acc += cur.data.price * checkFilterCartList[idx].quantity),
     0

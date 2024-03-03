@@ -1,28 +1,22 @@
-import useGetProductById from '../../queries/product/productByIdQueries';
-import NotFound from '../error/NotFound';
 import { Product } from '../../interface/product/productInterface';
 import ProductRating from './ProductRating';
 import { useState } from 'react';
-import QuantityControl from './QuantityControl';
+import QuantityControl from '../utils/QuantityControl';
 import { ClickCounterHandler } from '../../interface/product/quantityFuncInterface';
 import AddCartButton from '../buttons/AddCartButton';
 
 interface Props {
-  productId: string;
+  product: Product;
 }
 
-const ProductCard = ({ productId }: Props) => {
-  const { data: product } = useGetProductById<Product | string>(productId);
+const ProductCard = ({ product }: Props) => {
   const [quantity, setQuantity] = useState<number>(1);
-  if (typeof product === 'string' || product === undefined) {
-    return <NotFound></NotFound>;
-  }
   const handleClickCounter: ClickCounterHandler = (num: number) => {
     setQuantity(num);
   };
 
   return (
-    <div className="dark:bg-darkBlueColor flex">
+    <div className="dark:bg-darkBlueColor flex mt-28">
       <figure className="flex-shrink-0 bg-white w-80 h-80 rounded-2xl p-6">
         <img src={product.image} alt={product.title} className="w-full h-full" />
       </figure>

@@ -1,51 +1,31 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { useGetCategories } from '../../queries/category/categoryQueries';
+import CategoryProducts from '../categoryProducts/CategoryProducts';
+
+import NotFound from '../error/NotFound';
+import CategoryCarousel from '../utils/CategoryCarousel';
+import CategoryProductTitle from '../categoryProducts/CategoryProductTitle';
+import Skeleton from '../skeleton/skeleton';
 
 const Home = () => {
+  const { data = [] } = useGetCategories<Array<string>>();
+  if (data.length === 0) {
+    return <NotFound></NotFound>;
+  }
+
   return (
-    <div className="carousel rounded-box">
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg"
-          alt="Burger"
-        />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
-          alt="Burger"
-        />
+    <div className="">
+      <CategoryCarousel></CategoryCarousel>
+
+      <div className="max-w-screen-xl2 m-auto">
+        {data.map((category: string) => (
+          <div className="mt-10" key={category}>
+            <CategoryProductTitle category={category}></CategoryProductTitle>
+            <Suspense fallback={<Skeleton />}>
+              <CategoryProducts category={category} limit={4}></CategoryProducts>
+            </Suspense>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ const Nav = () => {
     alert('카테고리를 불러오는 중 에러가 발생했습니다.');
   }
   return (
-    <div className="dark:bg-obsidian dark:text-white flex justify-center w-full ">
-      <div className="navbar max-w-screen-xl2 pl-5 pr-5">
+    <div className="dark:bg-obsidian z-10 dark:text-white fixed w-full  justify-center max-w-sc ">
+      <div className="max-w-screen-xl2 mx-auto flex navbar">
         <Title></Title>
         <CategoryLinks shopCategories={shopCategories}></CategoryLinks>
         <div className="flex ml-auto">

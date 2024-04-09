@@ -23,18 +23,28 @@ function App() {
                   <span className="loading loading-ring loading-md"></span>
                   <span className="loading loading-ring loading-lg"></span>
                 </div>
-              }
-            >
+              }>
               <Nav></Nav>
             </Suspense>
           </ErrorBoundary>
           <div className="pt-16 min-h-[760px]">
             <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/"
+                element={<Home />}></Route>
 
-              <Route path="/category/:id" element={<CategoryProductsContainer />}></Route>
-              <Route path="/product/:id" element={<ProductContainer />}></Route>
-              <Route path="/cart" element={<CartContainer />}></Route>
+              <Route
+                path="/category/:id"
+                element={<CategoryProductsContainer />}></Route>
+              <Route
+                path="/product/:id"
+                element={<ProductContainer />}></Route>
+              <Route
+                path="/cart"
+                element={<CartContainer />}></Route>
+              <Route
+                path="/*"
+                element={<Home />}></Route>
             </Routes>
           </div>
 

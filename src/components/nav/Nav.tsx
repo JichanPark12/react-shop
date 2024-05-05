@@ -4,11 +4,12 @@ import DarkConfigIcon from './DarkConfigIcon';
 import CategoryLinks from './CategoryLink';
 import Title from './Title';
 import Search from './Search';
+
 const Nav = () => {
   const { data: shopCategories = [] } = useGetCategories<Array<string>>();
 
   return (
-    <div className="dark:bg-obsidian z-10 dark:text-white fixed w-full  justify-center max-w-sc ">
+    <div className="dark:bg-obsidian z-10 dark:text-white fixed w-full  justify-center max-w-sc bg-white">
       <div className="max-w-screen-xl2 mx-auto flex navbar">
         <Title></Title>
         <CategoryLinks shopCategories={shopCategories}></CategoryLinks>

@@ -18,7 +18,11 @@ const ProductCard = ({ product }: Props) => {
   return (
     <div className="dark:bg-darkBlueColor flex mt-28">
       <figure className="flex-shrink-0 bg-white w-80 h-80 rounded-2xl p-6">
-        <img src={product.image} alt={product.title} className="w-full h-full" />
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-full h-full"
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.title}</h2>
@@ -28,16 +32,16 @@ const ProductCard = ({ product }: Props) => {
           <div className="text-3xl mr-8">{`$${product.price}`}</div>
           <QuantityControl
             handleClickCounter={handleClickCounter}
-            minValue={1}
-          ></QuantityControl>
+            minValue={1}></QuantityControl>
           <div className="text-3xl mr-8 ml-5">{`totalPrice $${(
             product.price * quantity
           ).toLocaleString()}`}</div>
         </div>
 
         <div className="justify-start mt-3">
-          <button className="btn btn-primary mr-5">구매하기</button>
-          <AddCartButton productId={product.id} quantity={quantity}></AddCartButton>
+          <AddCartButton
+            productId={product.id}
+            quantity={quantity}></AddCartButton>
         </div>
       </div>
     </div>

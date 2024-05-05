@@ -1,21 +1,26 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import useGetProductAll from '../../queries/product/productAll';
 import { Product } from '../../interface/product/productInterface';
 import { Link } from 'react-router-dom';
 interface Props {
   filterProducts: Product[];
+  setValue: React.Dispatch<SetStateAction<string>>;
 }
-const SearchModal = ({ filterProducts }: Props) => {
+const SearchModal = ({ filterProducts, setValue }: Props) => {
   if (filterProducts.length === 0) {
     return;
   }
 
   return (
-    <div className=" absolute dark:bg-gray-600 max-h-[500px] overflow-scroll rounded-lg">
+    <div className=" absolute dark:bg-gray-600 max-h-[500px] overflow-scroll rounded-lg dark:text-white bg-white">
       <ul>
         {filterProducts.map((product) => (
-          <div className="p-3 hover:bg-gray-800 transition ease-in-out duration-200">
-            <Link to={`/${product.id}`}>{product.title}</Link>
+          <div className="p-3  transition ease-in-out duration-200 dark:hover:bg-gray-800 hover:bg-gray-300">
+            <Link
+              to={`/product/${product.id}`}
+              onClick={() => setValue('')}>
+              {product.title}
+            </Link>
           </div>
         ))}
       </ul>
@@ -44,7 +49,9 @@ const Search = () => {
         value={value}
         onChange={handleChange}
       />
-      <SearchModal filterProducts={filterProducts}></SearchModal>
+      <SearchModal
+        filterProducts={filterProducts}
+        setValue={setValue}></SearchModal>
     </div>
   );
 };

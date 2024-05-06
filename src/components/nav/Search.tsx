@@ -15,7 +15,9 @@ const SearchModal = ({ filterProducts, setValue }: Props) => {
     <div className=" absolute dark:bg-gray-600 max-h-[500px] overflow-scroll rounded-lg dark:text-white bg-white">
       <ul>
         {filterProducts.map((product) => (
-          <div className="p-3  transition ease-in-out duration-200 dark:hover:bg-gray-800 hover:bg-gray-300">
+          <div
+            id={product.id}
+            className="p-3  transition ease-in-out duration-200 dark:hover:bg-gray-800 hover:bg-gray-300">
             <Link
               to={`/product/${product.id}`}
               onClick={() => setValue('')}>
